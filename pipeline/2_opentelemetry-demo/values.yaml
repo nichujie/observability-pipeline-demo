@@ -1,0 +1,31 @@
+components:
+  frontend:
+    resources:
+      limits:
+        memory: 400Mi
+
+opentelemetry-collector:
+  resources:
+    limits:
+      memory: 640Mi
+  config:
+    exporters:
+      logging:
+        loglevel: debug
+      loki:
+        endpoint: http://my-otel-demo-loki.otel-demo.svc.cluster.local:3100/loki/api/v1/push
+        labels:
+          resource:
+            service.name: "job"
+    service:
+      pipelines:
+        traces:
+          processors: [memory_limiter, batch]
+          exporters: [otlp, logging, spanmetrics]
+        metrics:
+          receivers: [otlp, spanmetrics]
+          processors: [memory_limiter, filter/ottl, transform, batch]
+          exporters: [prometheus, logging]
+        logs:
+          receivers: [otlp]
+          exporters: [logging, loki]
