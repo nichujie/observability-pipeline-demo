@@ -1,0 +1,8 @@
+config:
+  outputs: |
+    [OUTPUT]
+        name              loki
+        match             *
+        host              my-otel-demo-loki.otel-demo.svc.cluster.local
+        labels            job=fluentbit, $sub['stream']
+        auto_kubernetes_labels on

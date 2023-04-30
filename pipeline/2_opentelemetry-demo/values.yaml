@@ -9,37 +9,6 @@ opentelemetry-collector:
     limits:
       memory: 640Mi
   config:
-    receivers:
-      otlp:
-        protocols:
-          grpc:
-          http:
-            cors:
-              allowed_origins:
-                - "http://*"
-                - "https://*"
-      filelog:
-        include: [/var/log/*.log]
-      fluentforward:
-        endpoint: my-otel-demo-otelcol.otel-demo.svc.cluster.local:3100/loki/api/v1/push
-    processors:
-      resource:
-        attributes:
-          - action: insert
-            key: loki.resource.labels
-            value: service.name
-    exporters:
-      logging:
-        loglevel: debug
-      loki:
-        endpoint: http://my-otel-demo-loki.otel-demo.svc.cluster.local:3100/loki/api/v1/push
-        labels:
-          # resource:
-          #   service.name: "job"
-          attributes:
-            log.file.name: "filename"
-            container_name: ""
-            container_id: ""
     service:
       pipelines:
         traces:
@@ -49,8 +18,3 @@ opentelemetry-collector:
           receivers: [otlp, spanmetrics]
           processors: [memory_limiter, filter/ottl, transform, batch]
           exporters: [prometheus]
-        logs:
-          receivers: [otlp]
-          # receivers: [filelog]
-          processors: [batch]
-          exporters: [logging, loki]

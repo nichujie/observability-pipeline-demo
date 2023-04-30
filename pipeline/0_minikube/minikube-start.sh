@@ -30,4 +30,20 @@ else
   echo "# Starting minikube with '--cpus $CPUS --memory ${MEMORY}g'"
   echo
   minikube start --cpus $CPUS --memory ${MEMORY}g
+
+  echo
+  echo "# Enabling metrics-server..."
+  minikube addons enable metrics-server
+
+  echo
+  echo "# Enabling dashboard..."
+  minikube addons enable dashboard
+
+  echo
+  echo "# Enabling ingress..."
+  minikube addons enable ingress
+
+  echo
+  echo "# Proxying dashboard...Visit the url below:"
+  minikube dashboard --url
 fi
