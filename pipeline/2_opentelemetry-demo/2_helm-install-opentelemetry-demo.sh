@@ -10,4 +10,4 @@ echo "  - NAMESPACE: $NAMESPACE"
 echo "  - DEMO: $DEMO"
 echo "  - VALUES: $VALUES"
 echo
-helm install $DEMO open-telemetry/opentelemetry-demo -n $NAMESPACE --create-namespace --values $VALUES
+helm upgrade --install $DEMO open-telemetry/opentelemetry-demo -n $NAMESPACE --create-namespace --values $VALUES
