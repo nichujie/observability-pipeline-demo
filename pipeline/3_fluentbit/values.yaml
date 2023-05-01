@@ -1,8 +1,15 @@
 config:
   outputs: |
     [OUTPUT]
-        name              loki
-        match             *
-        host              my-otel-demo-loki.otel-demo.svc.cluster.local
-        labels            job=fluentbit, $sub['stream']
-        auto_kubernetes_labels on
+        Name                 opentelemetry
+        Match                *
+        Host                 my-otel-demo-otelcol.otel-demo.svc.cluster.local
+        Port                 4318
+        logs_uri             /v1/logs
+        metrics_uri          /v1/metrics
+        traces_uri           /v1/traces
+        log_response_payload true
+        log_level            warn
+        tls                  Off
+        tls.verify           Off
+        add_label            job fluentbit
