@@ -1,0 +1,23 @@
+{
+  "body": "Receive ListRecommendations for product ids:['HQTGWGPNH4', '0PUK6V6EV0', '9SIQT8TOJO', '2ZYFJ3GM2N', '66VCHSJNUP']",
+  "traceid": "540cc68c9b859a0e8b232e894ef71cbc",
+  "spanid": "f18a8d02e6968cab",
+  "severity": "INFO",
+  "attributes": {
+    "otelServiceName": "recommendationservice",
+    "otelSpanID": "f18a8d02e6968cab",
+    "otelTraceID": "540cc68c9b859a0e8b232e894ef71cbc"
+  },
+  "resources": {
+    "k8s.namespace.name": "otel-demo",
+    "k8s.node.name": "minikube",
+    "k8s.pod.name": "my-otel-demo-recommendationservice-6fb7d745f-7mn5p",
+    "service.instance.id": "09978dff-b1b7-4365-9501-1b9198564c6c",
+    "service.name": "recommendationservice",
+    "service.namespace": "opentelemetry-demo",
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.15.0"
+  },
+  "instrumentation_scope": { "name": "opentelemetry.sdk._logs._internal" }
+}

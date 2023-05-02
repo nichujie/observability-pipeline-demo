@@ -1,0 +1,25 @@
+{
+  "body": {
+    "kubernetes": {
+      "container_hash": "ghcr.io/open-telemetry/demo@sha256:cc8bf3a2a138cefdea0388b91559e28fccaf23205ce1c1ba60512da46b083325",
+      "container_image": "ghcr.io/open-telemetry/demo:1.4.0-adservice",
+      "container_name": "adservice",
+      "docker_id": "505bf759882ba861a3aed885da89fdb7daf835f4d5ffec7f9d7cb34a684a96a2",
+      "host": "minikube",
+      "labels": {
+        "app.kubernetes.io/component": "adservice",
+        "app.kubernetes.io/instance": "my-otel-demo",
+        "app.kubernetes.io/name": "my-otel-demo-adservice",
+        "opentelemetry.io/name": "my-otel-demo-adservice",
+        "pod-template-hash": "7bc49b7685"
+      },
+      "namespace_name": "otel-demo",
+      "pod_id": "0b3123af-c544-44a0-8a7e-709a219b785a",
+      "pod_name": "my-otel-demo-adservice-7bc49b7685-x9jlv"
+    },
+    "log": "2023-05-01 15:57:26 - oteldemo.AdService - Targeted ad request received for [telescopes] trace_id=132afd42ad213e21a6c87c31959b9d3c span_id=e4f8fbbdc268da9a trace_flags=01 \n",
+    "stream": "stdout",
+    "time": "2023-05-01T15:57:26.296086584Z"
+  },
+  "resources": { "service.name": "fluentbit" }
+}

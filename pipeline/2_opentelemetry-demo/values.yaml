@@ -9,24 +9,6 @@ opentelemetry-collector:
     limits:
       memory: 640Mi
   config:
-    receivers:
-      otlp:
-        protocols:
-          grpc:
-          http:
-    processors:
-      resource:
-        attributes:
-          - key: service.name
-            value: "fluentbit"
-            action: insert
-    exporters:
-      loki:
-        endpoint: http://my-otel-demo-loki.otel-demo.svc.cluster.local:3100/loki/api/v1/push
-        format: json
-        labels:
-          resource:
-            service.name: "service_name" # No "." in loki label name
     service:
       pipelines:
         traces:
@@ -36,7 +18,3 @@ opentelemetry-collector:
           receivers: [otlp, spanmetrics]
           processors: [memory_limiter, filter/ottl, transform, batch]
           exporters: [prometheus]
-        logs:
-          receivers: [otlp]
-          processors: [resource, batch]
-          exporters: [loki]
