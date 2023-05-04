@@ -1,0 +1,35 @@
+flowchart TB
+subgraph od[Kubernetes Pod]
+ms["Application<br/>(Instrumented with OTel SDK)"]
+end
+
+ms -->|"OTLP<br/>gRPC/HTTP"| oc-recv
+
+subgraph oc[OTel Collector]
+    oc-recv["OTLP Receiver<br/>gRPC/HTTP"]
+    oc-proc[Processors]
+    oc-prom["Prometheus Exporter"]
+
+    oc-recv --> oc-proc
+    oc-proc --> oc-prom
+end
+
+oc-prom -->|HTTP| pr-sc
+
+subgraph pr[Prometheus]
+    pr-sc["Prometheus Scraper"]
+    pr-tsdb[(Prometheus TSDB)]
+    pr-http["Prometheus<br/>HTTP Server"]
+
+    pr-sc --> pr-tsdb
+    pr-tsdb --> pr-http
+end
+
+pr-http -->|HTTP| gr-srv
+
+subgraph gr[Grafana]
+    gr-srv["Grafana Server"]
+    gr-ui["Grafana Dashboard UI"]
+
+    gr-srv --> gr-ui
+end

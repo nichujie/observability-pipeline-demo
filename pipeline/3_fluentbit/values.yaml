@@ -5,4 +5,7 @@ config:
         match             *
         host              my-otel-demo-loki.otel-demo.svc.cluster.local
         labels            job=fluentbit
+        remove_keys       kubernetes,stream,time
+        drop_single_key   on
+        line_format       key_value
         auto_kubernetes_labels on
